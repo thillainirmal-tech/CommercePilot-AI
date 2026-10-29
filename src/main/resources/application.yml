@@ -1,0 +1,11 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: commercepilot-ai
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
