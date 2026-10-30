@@ -8,6 +8,8 @@
 
 [Open the full-resolution screenshot](docs/media/product-console.jpg) · **Recruiter demo:** create an auditable order plan, show the approval boundary, then explain idempotent execution and inventory compensation on downstream failure.
 
+[▶ Watch the recorded planning demo (5 seconds)](docs/media/runtime-demo.mp4)
+
 > **Deployment status:** tested, containerized and ready for an AWS deployment; execution requires configured downstream services and no public production endpoint is claimed yet.
 
 An explainable, safety-first agentic commerce orchestrator. Inventory, risk, pricing and fulfillment agents produce an auditable order plan; an independent approval-gated endpoint can execute it through real service adapters.
