@@ -8,4 +8,10 @@ management:
     web:
       exposure:
         include: health,info
-
+commerce:
+  approval-token: ${COMMERCE_APPROVAL_TOKEN:}
+  adapters:
+    inventory-url: ${INVENTORY_SERVICE_URL:}
+    payment-url: ${PAYMENT_SERVICE_URL:}
+    fulfillment-url: ${FULFILLMENT_SERVICE_URL:}
+    service-token: ${COMMERCE_SERVICE_TOKEN:}

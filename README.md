@@ -2,14 +2,14 @@
 
 [![CI](https://github.com/thillainirmal-tech/CommercePilot-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/thillainirmal-tech/CommercePilot-AI/actions/workflows/ci.yml)
 
-An explainable, safety-first agentic commerce orchestrator. Inventory, risk, pricing and fulfillment agents produce an auditable order plan without silently performing irreversible operations.
+An explainable, safety-first agentic commerce orchestrator. Inventory, risk, pricing and fulfillment agents produce an auditable order plan; an independent approval-gated endpoint can execute it through real service adapters.
 
 ## Why it stands out
 
 - Deterministic multi-agent trace with evidence for every decision
 - Human review for high-risk orders
 - Inventory and pricing rules with reproducible behavior
-- Explicit adapter boundary before payment, reservation or shipment writes
+- Authenticated, idempotent inventory, payment and shipment adapters with inventory compensation on downstream failure
 - Browser dashboard, validation, Actuator health, tests, CI and Docker
 
 ## Run
@@ -18,7 +18,7 @@ An explainable, safety-first agentic commerce orchestrator. Inventory, risk, pri
 mvn spring-boot:run
 ```
 
-Open `http://localhost:8088` or call `GET /api/orders/demo`. No API key or external service is required.
+Open `http://localhost:8088` or call `GET /api/orders/demo`. Planning works offline. Execution requires `INVENTORY_SERVICE_URL`, `PAYMENT_SERVICE_URL`, `FULFILLMENT_SERVICE_URL`, `COMMERCE_SERVICE_TOKEN`, and `COMMERCE_APPROVAL_TOKEN`; missing adapters fail explicitly.
 
 ## Verify
 
@@ -31,9 +31,8 @@ docker build -t commercepilot-ai .
 
 `Order request → inventory agent → risk agent → pricing agent → fulfillment plan → approval boundary`
 
-The project intentionally generates plans only. Production payment, stock and delivery systems belong behind authenticated, idempotent adapters with explicit approval policies.
+`POST /api/orders/execute` accepts the same validated order plus `X-Approval-Token`. It executes only an approved deterministic plan, sends an idempotency key to every adapter, and releases inventory if payment or fulfillment fails.
 
 ## License
 
 MIT
-
