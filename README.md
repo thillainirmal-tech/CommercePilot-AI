@@ -18,7 +18,7 @@ An explainable, safety-first agentic commerce orchestrator. Inventory, risk, pri
 mvn spring-boot:run
 ```
 
-Open `http://localhost:8088` or call `GET /api/orders/demo`. Planning works offline. Execution requires `INVENTORY_SERVICE_URL`, `PAYMENT_SERVICE_URL`, `FULFILLMENT_SERVICE_URL`, `COMMERCE_SERVICE_TOKEN`, and `COMMERCE_APPROVAL_TOKEN`; missing adapters fail explicitly.
+Planning works without downstream writes. Execution requires `INVENTORY_SERVICE_URL`, `PAYMENT_SERVICE_URL`, `FULFILLMENT_SERVICE_URL`, `COMMERCE_SERVICE_TOKEN`, and `COMMERCE_APPROVAL_TOKEN`; missing adapters fail explicitly.
 
 ## Verify
 
